@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="input.css">    
+    <link rel="stylesheet" href="output.css">    
+</head>
+<body>
+    <header class="p-8 bg-daret-vert shadow-2xl justify-center">
+        <h1 class="text-3xl text-center w-full font-medium">GestionLivres</h1>
+    </header>
+    <main>
+        <section
+        id="ajouter-section"
+        class="flex justify-center mt-8"
+        >   
+            <button 
+            id="ajouterBtn"
+            class="rounded bg-daret-vert px-5 py-2 mt-3 font-semibold text-white hover:bg-daret-vert/90 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"                    
+            >Ajouter Livre</button>
+            <dialog 
+            id="dialogue"
+            class="m-auto w-[min(92vw,28rem)] rounded-lg border border-daret-bordure bg-white p-6 text-daret-encre backdrop:bg-daret-encre/50"
+            >
+                <form action="" 
+                id="formAjouter"
+                class="flex flex-col"
+                >
+                    <label for="titre" class="font-bold">Title *</label>
+                    <input 
+                    id="titre"
+                    name="titre"
+                    type="text" 
+                    class="mt-1 w-full rounded border border-daret-bordure px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"                
+                    >
+                    <label for="auteur">Author *</label>
+                    <input 
+                    id="auteur"
+                    name="auteur"
+                    type="text" 
+                    class="mt-1 w-full rounded border border-daret-bordure px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"                
+                    >
+                    <label for="livreYear">Year</label>
+                    <input type="number" id="livreYear" name="livreYear"
+                    class="mt-1 w-full rounded border border-daret-bordure px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"
+                    >
+                    <label for="livreGenre">Genre</label>
+                    <input type="text" id="livreGenre" name="livreGenre"
+                    class="mt-1 w-full rounded border border-daret-bordure bg-white px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"
+                    >
+                    <label for="livreDescription">Description</label>
+                    <textarea name="livreDescription" id="livreDescription"
+                    class="mt-1 w-full rounded border border-daret-bordure bg-white px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"
+                    ></textarea>
+                    <label for="livreStatus">Status</label>
+                    <select name="livreStatus" id="livreStatus"
+                    class="mt-1 w-full rounded border border-daret-bordure bg-white px-3 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"
+                    >
+                        <option value="to-read">to-read</option>
+                        <option value="reading">reading</option>
+                        <option value="read">read</option>
+                    </select>
+                    <div class="flex felx-row justify-center gap-4">
+                        <button 
+                        id="fermerBtn"
+                        class="mt-3 rounded border border-daret-vert px-4 py-2 font-medium text-daret-vert hover:bg-daret-vert-clair focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"
+                        >Fermer</button>
+                        <button 
+                        id="submitBtn" 
+                        type="submit"
+                        class="rounded bg-daret-vert px-5 py-2 mt-3 font-semibold text-white hover:bg-daret-vert/90 focus:outline-2 focus:outline-offset-2 focus:outline-daret-vert"                    
+                        >Submit</button>
+                    </div>
+                </form>
+            </dialog>
+        </section>
+        <section 
+        id="livresArea"
+        class="grid grid-cols-4 gap-4">
+
+        </section>
+
+    </main>
+</body>
+</html>

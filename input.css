@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@theme {
+  --color-daret-fond: #f7f3ea;
+  --color-daret-encre: #1c2b27;
+  --color-daret-vert: #1f5f4a;
+  --color-daret-vert-clair: #dcebe4;
+  --color-daret-terre: #9a4a1f;
+  --color-daret-bordure: #c9c2b0;
+  --color-daret-erreur: #a31d1d;
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
