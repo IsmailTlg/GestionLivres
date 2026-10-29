@@ -1,12 +1,11 @@
 export {AjouterLivre, CreateLivre, k}
 import { LoadLivres } from "./loadLivres.js";
-
+import { livres } from "./AfficherLivres.js";
 /*US-01*/
 let k = Number(localStorage.getItem('total')) || 0;
 
 //array takes title, author, year, genre, description, state
 function CreateLivre(arr){
-    const livresArea = document.getElementById("livresArea")
     const livreCard = document.createElement('div')
     // Styling the card
     livreCard.className = "flex flex-col w-[70%] m-6 p-4 shadow-xl justify-center items-center gap-2"
@@ -36,7 +35,8 @@ function CreateLivre(arr){
     const stateLivre = document.createElement('p')
     stateLivre.textContent = `state: ${arr[5]}`
     livreCard.appendChild(stateLivre)
-    livresArea.appendChild(livreCard)
+    livres.push(livreCard)
+    //livresArea.appendChild(livreCard)
 }
 function AjouterLivre(){
     const btnAjouter = document.getElementById("ajouterBtn");
@@ -74,4 +74,3 @@ function AjouterLivre(){
         
     })
 }
-AjouterLivre()
