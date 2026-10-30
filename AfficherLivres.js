@@ -2,6 +2,7 @@ export {livres, showLivres}
 import { AjouterLivre } from "./script.js"
 import { LoadLivres } from "./loadLivres.js"
 import { filtrerLivres } from "./filtrerLivres.js"
+import { DeleteLivre } from "./delete.js"
 let livres = []
 
 function showLivres(list){
@@ -15,3 +16,4 @@ LoadLivres()
 AjouterLivre()
 showLivres(livres)
 filtrerLivres()
+DeleteLivre()
