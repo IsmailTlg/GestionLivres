@@ -36,7 +36,7 @@ function CreateLivre(arr){
     stateLivre.textContent = `state: ${arr[5]}`
     livreCard.appendChild(stateLivre)
     livres.push(livreCard)
-    //livresArea.appendChild(livreCard)
+    livresArea.appendChild(livreCard)
 }
 function AjouterLivre(){
     const btnAjouter = document.getElementById("ajouterBtn");
