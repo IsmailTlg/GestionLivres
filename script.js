@@ -1,40 +1,42 @@
-export {AjouterLivre, CreateLivre, k}
+export {AjouterLivre, CreateLivre, k, livresValues}
 import { LoadLivres } from "./loadLivres.js";
 import { livres } from "./AfficherLivres.js";
 import { DeleteLivre } from "./delete.js";
 /*US-01*/
 let k = Number(localStorage.getItem('total')) || 0;
+let livresValues = JSON.parse(localStorage.getItem('livres'))||[];
+
 
 //array takes title, author, year, genre, description, state
-function CreateLivre(arr){
+function CreateLivre(obj){
     const livreCard = document.createElement('div')
     // Styling the card
     livreCard.className = "flex flex-col w-[70%] m-6 p-4 shadow-xl justify-center items-center gap-2 hover:-translate-y-2 transition-transform duration-150"
     //(adding title to the card)
     const titreLivre = document.createElement('h2')
     titreLivre.className = "text-2xl font-bold"
-    titreLivre.textContent = arr[0];
+    titreLivre.textContent = obj.title;
     livreCard.appendChild(titreLivre)
     //(adding author to card)
     const auteurLivre = document.createElement('h3')
-    auteurLivre.textContent = `by ${arr[1]}`
+    auteurLivre.textContent = `by ${obj.author}`
     auteurLivre.classList = "text-xl"
     livreCard.appendChild(auteurLivre)
     //(adding Year)
     const yearLivre = document.createElement('p')
-    yearLivre.textContent = `Release: ${arr[2]}`
+    yearLivre.textContent = `Release: ${obj.year}`
     livreCard.appendChild(yearLivre)
     //(adding Genre)
     const genreLivre = document.createElement('p')
-    genreLivre.textContent = `Genre: ${arr[3]}`
+    genreLivre.textContent = `Genre: ${obj.genre}`
     livreCard.appendChild(genreLivre)
     //(adding description)
     const descripLivre = document.createElement('p')
-    descripLivre.textContent = `Description: ${arr[4]}`
+    descripLivre.textContent = `Description: ${obj.description}`
     livreCard.appendChild(descripLivre)
     //(adding state)
     const stateLivre = document.createElement('p')
-    stateLivre.textContent = `state: ${arr[5]}`
+    stateLivre.textContent = `state: ${obj.state}`
     livreCard.appendChild(stateLivre)
     //adding modify and delete buttons 
     const btnDiv = document.createElement('div')
@@ -77,9 +79,17 @@ function AjouterLivre(){
             e.preventDefault()
         }
         else{
-            let bookValues = [titre.value, auteur.value, year.value, genre.value, description.value, state.value]
-            localStorage.setItem(`livre${k}`, JSON.stringify(bookValues))
-            CreateLivre([titre.value, auteur.value, year.value, genre.value, description.value, state.value])
+            let livre = {
+                title: titre.value,
+                author: auteur.value, 
+                year: year.value, 
+                genre: genre.value, 
+                description: description.value, 
+                state: state.value
+            }
+            livresValues.push(livre)
+            localStorage.setItem(`livres`, JSON.stringify(livresValues))
+            CreateLivre(livre)
             dialogue.close()
             e.preventDefault()
             //storing current book in local storage
@@ -90,3 +100,4 @@ function AjouterLivre(){
         
     })
 }
+

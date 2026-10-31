@@ -7,14 +7,12 @@ function DeleteLivre(){
         if(event.target.tagName === 'BUTTON'){
             let btn = event.target.closest('div');
             let index = livres.indexOf(btn.parentElement)
-            let total = Number(localStorage.getItem('total'))
-            total--;
-            localStorage.setItem('total', total)
+            let livresValues = JSON.parse(localStorage.getItem('livres'))
             livres.splice(index, 1)
+            livresValues.splice(index, 1)
+            localStorage.setItem('livres', JSON.stringify(livresValues))
             showLivres(livres)
-            console.log(index)
-            localStorage.removeItem(`livre${index+gap}`)
-            gap++;
+
 
         }
     })
