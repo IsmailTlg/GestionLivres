@@ -5,7 +5,10 @@ export {LoadLivres}
 function LoadLivres(){
     let j = Number(localStorage.getItem('total'))
     for(let i = 0; i < j; i++){
-        let info = JSON.parse(localStorage.getItem(`livre${i}`))
+        let info = JSON.parse(localStorage.getItem(`livre${i}`)) || 0;
+        if(info == 0){
+            continue;
+        }
         CreateLivre(info)
     }
 }
