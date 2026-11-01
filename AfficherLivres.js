@@ -4,6 +4,7 @@ import { LoadLivres } from "./loadLivres.js"
 import { filtrerLivres } from "./filtrerLivres.js"
 import { deleteLivre } from "./delete.js"
 import { modifyLivre } from "./modifyLivre.js"
+import { sortLivres } from "./sortLivres.js"
 let livres = []
 
 function showLivres(list){
@@ -19,3 +20,4 @@ AjouterLivre()
 showLivres(livres)
 filtrerLivres()
 deleteLivre()
+sortLivres()
