@@ -7,10 +7,13 @@ function deleteLivre(){
         if(event.target.id === 'btnDelete'){
             let btn = event.target.closest('div');
             let index = livres.indexOf(btn.parentElement)
-            livres.splice(index, 1)
-            livresValues.splice(index, 1)
-            localStorage.setItem('livres', JSON.stringify(livresValues))
-            showLivres(livres)
+            let confirmation = confirm("Are you sure about deleting this book ?")
+            if(confirmation){
+                livres.splice(index, 1)
+                livresValues.splice(index, 1)
+                localStorage.setItem('livres', JSON.stringify(livresValues))
+                showLivres(livres)
+            }
         }
     })
 }
