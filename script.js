@@ -1,11 +1,13 @@
-export {AjouterLivre, CreateLivre, k, livresValues}
+export {AjouterLivre, CreateLivre, livresValues, etat}
 import { LoadLivres } from "./loadLivres.js";
 import { livres } from "./AfficherLivres.js";
-import { DeleteLivre } from "./delete.js";
+import { deleteLivre } from "./delete.js";
 /*US-01*/
-let k = Number(localStorage.getItem('total')) || 0;
 let livresValues = JSON.parse(localStorage.getItem('livres'))||[];
-
+let etat = {
+    mode: "ajouter",
+    indexLivre: null
+}
 
 //array takes title, author, year, genre, description, state
 function CreateLivre(obj){
@@ -24,18 +26,22 @@ function CreateLivre(obj){
     livreCard.appendChild(auteurLivre)
     //(adding Year)
     const yearLivre = document.createElement('p')
+    yearLivre.id = "year"
     yearLivre.textContent = `Release: ${obj.year}`
     livreCard.appendChild(yearLivre)
     //(adding Genre)
     const genreLivre = document.createElement('p')
+    genreLivre.id = 'genre'
     genreLivre.textContent = `Genre: ${obj.genre}`
     livreCard.appendChild(genreLivre)
     //(adding description)
     const descripLivre = document.createElement('p')
+    descripLivre.id = 'description'
     descripLivre.textContent = `Description: ${obj.description}`
     livreCard.appendChild(descripLivre)
     //(adding state)
     const stateLivre = document.createElement('p')
+    stateLivre.id = 'status'
     stateLivre.textContent = `state: ${obj.state}`
     livreCard.appendChild(stateLivre)
     //adding modify and delete buttons 
@@ -78,24 +84,37 @@ function AjouterLivre(){
         if(titre.value == "" || auteur.value == ""){
             e.preventDefault()
         }
+        
         else{
-            let livre = {
-                title: titre.value,
-                author: auteur.value, 
-                year: year.value, 
-                genre: genre.value, 
-                description: description.value, 
-                state: state.value
+            if(etat.mode == "modifier"){
+                let indexLivre = etat.indexLivre
+                livresValues[indexLivre].title = titre.value
+                livresValues[indexLivre].author = auteur.value
+                livresValues[indexLivre].year = year.value
+                livresValues[indexLivre].genre = genre.value
+                livresValues[indexLivre].description = description.value
+                livresValues[indexLivre].state = state.value
+                localStorage.setItem('livres', JSON.stringify(livresValues))
+                location.reload()
+                etat.mode = "ajouter"
+                etat.indexLivre = null
             }
-            livresValues.push(livre)
-            localStorage.setItem(`livres`, JSON.stringify(livresValues))
-            CreateLivre(livre)
+            else{
+                let livre = {
+                    title: titre.value,
+                    author: auteur.value, 
+                    year: year.value, 
+                    genre: genre.value, 
+                    description: description.value, 
+                    state: state.value
+                }
+                livresValues.push(livre)
+                localStorage.setItem(`livres`, JSON.stringify(livresValues))
+                CreateLivre(livre)
+                console.log(2)
+            }
             dialogue.close()
             e.preventDefault()
-            //storing current book in local storage
-            k = Number(k) + 1;
-            localStorage.setItem('total', k)
-            ///////
         }
         
     })
