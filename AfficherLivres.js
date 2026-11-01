@@ -2,6 +2,8 @@ export {livres, showLivres}
 import { AjouterLivre } from "./script.js"
 import { LoadLivres } from "./loadLivres.js"
 import { filtrerLivres } from "./filtrerLivres.js"
+import { deleteLivre } from "./delete.js"
+import { modifyLivre } from "./modifyLivre.js"
 let livres = []
 
 function showLivres(list){
@@ -11,7 +13,9 @@ function showLivres(list){
         livresArea.appendChild(list[i])
     }
 }
+modifyLivre()
 LoadLivres()
 AjouterLivre()
 showLivres(livres)
 filtrerLivres()
+deleteLivre()
