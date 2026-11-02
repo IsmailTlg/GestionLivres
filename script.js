@@ -71,6 +71,8 @@ function AjouterLivre(){
         dialogue.showModal()
     })
     btnFermer.addEventListener('click', function(){
+        etat.state = "ajouter"
+        etat.indexLivre = null
         dialogue.close()
     })
     const form = document.getElementById("formAjouter")
@@ -81,7 +83,7 @@ function AjouterLivre(){
     const description = document.getElementById("livreDescription")
     const state = document.getElementById("livreStatus")
     form.addEventListener('submit', function(e){
-        if(titre.value == "" || auteur.value == ""){
+        if(titre.value.trim() == "" || auteur.value.trim() == ""){
             e.preventDefault()
         }
         
@@ -111,10 +113,15 @@ function AjouterLivre(){
                 livresValues.push(livre)
                 localStorage.setItem(`livres`, JSON.stringify(livresValues))
                 CreateLivre(livre)
-                console.log(2)
             }
             dialogue.close()
             e.preventDefault()
+            titre.value = ""
+            auteur.value = ""
+            year.value = ""
+            genre.value = ""
+            description.value = ""
+            state.value = "to-read"
         }
         
     })
